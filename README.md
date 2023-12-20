@@ -1,2 +1,2 @@
-# containerization-samples-
+# containerization-samples
 containerization-samples 
