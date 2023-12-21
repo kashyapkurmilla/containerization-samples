@@ -34,7 +34,7 @@ docker run -p 8000:8000 python-app
 ```
 This will build the Docker image tagged as `python-app` and run it, exposing port `8000` on your local machine.
 
-###Go Application
+### Go Application
 To build and run the Go application container:
 
 ```bash
