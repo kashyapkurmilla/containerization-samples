@@ -1,0 +1,47 @@
+version: "2.23.2"
+
+services:
+  db:
+    image: mysql:8.0
+    restart: unless-stopped
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootPassword
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wp-user
+      MYSQL_PASSWORD: wp-pass
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - wp-network
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: unless-stopped
+    container_name: phpmyadmin
+    depends_on:
+      - db
+    environment:
+      PMA_HOST: db
+    ports:
+      - "8889:80" # Updated port to default PhpMyAdmin port
+    networks:
+      - wp-network
+
+  wordpress:
+    image: wordpress:latest
+    restart: unless-stopped
+    container_name: wordpress-site
+    depends_on:
+      - db
+    ports:
+      - "8001:80"
+    networks:
+      - wp-network
+
+networks:
+  wp-network:
+    driver: bridge
+
+volumes:
+  mysql-data:
