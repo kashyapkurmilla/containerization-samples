@@ -8,8 +8,6 @@ This repository demonstrates the containerization of both Python and Go applicat
 - [Python Application](#python-application)
 - [Go Application](#go-application)
 - [Running the Containers](#running-the-containers)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Setup
 
@@ -33,3 +31,15 @@ To build and run the Python application container:
 cd python-app
 docker build -t python-app .
 docker run -p 8000:8000 python-app
+```
+This will build the Docker image tagged as `python-app` and run it, exposing port `8000` on your local machine.
+
+###Go Application
+To build and run the Go application container:
+
+```bash
+cd go-app
+docker build -t go-app .
+docker run -p 9000:9000 go-app
+```
+This will build the Docker image tagged as `go-app` and run it, exposing port `9000` on your local machine
