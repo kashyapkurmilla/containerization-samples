@@ -1,0 +1,27 @@
+# Mongo and Mongo Express - these are comtainers , we divide them as services 
+# service 1- MongoDB , service 2 - MOngo Express 
+# we can have as many services as we want
+# In Docker compise there is no neec to write about network, all the containers that are mentioned in docker compose will go into new network , that is created by docker compose 
+version: '3'
+services:
+  MongoDB:
+    image: mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=kashyap
+      - MONGO_INITDB_ROOT_PASSWORD=password
+    ports:
+      - "27017:27017"
+    volumes:
+      - mymongo-data:/data/db
+
+  Mongo-Express:
+    image: mongo-express
+    environment:
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=kashyap
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=password
+      - ME_CONFIG_MONGODB_SERVER=MongoDB
+    ports:
+      - "8081:8081"
+volumes:
+  mymongo-data:
+    driver: local
